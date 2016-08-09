@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainColor"
+    android:fitsSystemWindows="true">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/mainimage_1"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="110" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="50"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="118" />
+
+            <ImageView
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="110"
+                android:background="@drawable/logo" />
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="118" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="80" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="50"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="52" />
+
+
+            <EditText
+                android:id="@+id/email_edit_signin"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="635"
+                android:background="@drawable/edit_background"
+                android:hint="이메일"
+                android:paddingLeft="5dp"
+                android:textColor="#ffffff"
+                android:inputType="textWebEmailAddress"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="52" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="10" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="50"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="52" />
+
+
+            <EditText
+                android:id="@+id/password_edit_signin"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="635"
+                android:background="@drawable/edit_background"
+                android:hint="비밀번호"
+                android:paddingLeft="5dp"
+                android:inputType="textPassword"
+                android:textColor="#ffffff"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="52" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="10" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="50"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="52" />
+
+            <Button
+                android:id="@+id/signin_btn"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="645"
+                android:background="@drawable/signin_btn"
+                android:text="로그인"
+                android:textColor="#ffffff"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="53" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="28" />
+
+        <TextView
+            android:id="@+id/findaccount_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="65"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="이메일/비밀번호찾기"
+            android:textColor="#ffffff"
+            android:textSize="12.7sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="44" />
+
+        <LinearLayout
+            android:id="@+id/facebook_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="20"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="70" />
+
+            <ImageView
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="20"
+                android:background="@drawable/facebooklogo" />
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="11" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="180"
+                android:gravity="center"
+                android:text="Facebook으로 로그인"
+                android:textColor="#ffffff"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="42" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="40" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="2"
+            android:background="#ffffff"
+            />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="60"
+            android:background="#4dffffff"
+            android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="영스를 시작해 보세요!  "
+                android:textColor="#ffffff"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/signup_btn_signin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="가입하기"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+
+    </RelativeLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:fitsSystemWindows="true"
+    >
+
+    <include layout="@layout/header"
+        android:id="@+id/header"
+        />
+
+
+    <RelativeLayout
+        android:id="@+id/info_bar"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="70dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        >
+        <com.makeramen.roundedimageview.RoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/my_profile"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="9dp"
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop"
+            android:background="#ffffff"
+            app:riv_corner_radius="30dip"
+            app:riv_mutate_background="true"
+            app:riv_oval="true"
+            />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/other_profile"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_toRightOf="@id/my_profile"
+            android:layout_marginLeft="5dp"
+            android:layout_alignTop="@id/my_profile"
+            android:scaleType="centerCrop"
+            android:background="#ffffff"
+            app:riv_corner_radius="30dip"
+            app:riv_mutate_background="true"
+            app:riv_oval="true"
+            />
+        
+        <Button
+            android:id="@+id/next_question"
+            android:layout_width="93dp"
+            android:layout_height="48dp"
+            android:text="다음문항"
+            android:textColor="#ffffff"
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@drawable/next_question_back"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="11dp"
+            />
+        
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/question_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#323946"
+        android:textSize="20.7sp"
+        android:textStyle="bold"
+        android:layout_below="@id/info_bar"
+        android:layout_marginTop="37dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="23dp"
+        />
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#323946"
+        android:textSize="20.7sp"
+        android:layout_below="@id/question_num"
+        android:layout_marginTop="5dp"
+        android:layout_alignLeft="@id/question_num"
+        android:layout_marginRight="23dp"
+        />
+    
+    <Button
+        android:id="@+id/record"
+        android:layout_width="166dp"
+        android:layout_height="166dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/speak_1"
+        />
+</RelativeLayout>

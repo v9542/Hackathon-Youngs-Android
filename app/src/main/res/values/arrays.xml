@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="type_list">
+        <item>OPIC</item>
+        <item>토플</item>
+        <item>토익</item>
+        <item>회사 면접</item>
+        <item>자유주제</item>
+        <item>일상생활</item>
+    </string-array>
+</resources>
+

@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:fitsSystemWindows="true"
+    android:background="@color/mainColor"
+    android:orientation="vertical"
+    >
+
+    <include layout="@layout/header"
+        android:id="@+id/header"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/mainimage_1"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="56dp"
+        >
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="20" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profileImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#ffffff"
+            android:scaleType="centerCrop"
+            app:riv_corner_radius="30dip"
+            app:riv_mutate_background="true"
+            app:riv_oval="true"
+            />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="30" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="370"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="29" />
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="692"
+                android:background="@drawable/square_form_back"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="16" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="200"
+                        android:textColor="#ababab"
+                        android:textSize="15sp"
+                        android:gravity="center_vertical|right"
+                        android:text="이메일" />
+
+                    <View
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="26" />
+
+                    <EditText
+                        android:id="@+id/email_edit_signup"
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:gravity="center_vertical"
+                        android:layout_weight="510"
+                        android:textSize="15sp"
+                        android:background="#ffffff"
+                        android:hint="name@example.com"
+                        android:inputType="textWebEmailAddress"
+                        />
+
+                    <View
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="50" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="0.02"
+                    android:background="#e4e4e4"/>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="16" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="200"
+                        android:textColor="#ababab"
+                        android:textSize="15sp"
+                        android:gravity="center_vertical|right"
+                        android:text="닉네임" />
+
+                    <View
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="26" />
+
+                    <EditText
+                        android:id="@+id/nickname_edit_signup"
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:gravity="center_vertical"
+                        android:layout_weight="510"
+                        android:background="#ffffff"
+                        android:textSize="15sp"
+                        android:hint="2~10자 이내의 문자"
+                        android:inputType="textWebEmailAddress"
+                        />
+
+                    <View
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="50" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="0.02"
+                    android:background="#e4e4e4"/>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="16" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="200"
+                        android:textColor="#ababab"
+                        android:textSize="15sp"
+                        android:gravity="center_vertical|right"
+                        android:text="비밀번호" />
+
+                    <View
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="26" />
+
+                    <EditText
+                        android:id="@+id/password_edit_signup"
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:gravity="center_vertical"
+                        android:layout_weight="510"
+                        android:background="#ffffff"
+                        android:inputType="textPassword"
+                        android:textSize="15sp"
+                        android:hint="5자이상"
+                        />
+
+                    <View
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="50" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="0.02"
+                    android:background="#e4e4e4"/>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="16" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="200"
+                        android:textColor="#ababab"
+                        android:textSize="15sp"
+                        android:gravity="center_vertical|right"
+                        android:text="비밀번호 확인" />
+
+                    <View
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="26" />
+
+                    <EditText
+                        android:id="@+id/repassword_edit_signup"
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:gravity="center_vertical"
+                        android:layout_weight="510"
+                        android:background="#ffffff"
+                        android:textSize="15sp"
+                        android:inputType="textPassword"
+                        android:hint="5자이상"
+                        />
+
+                    <View
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="50" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="29" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="180" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="110"
+            android:orientation="horizontal"
+            >
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="29" />
+
+            <Button
+                android:id="@+id/signup_btn_signup"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="692"
+                android:text="약관/안내에 동의하고 가입"
+                android:background="@drawable/square_btn"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                />
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="29" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="254" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="30"
+            android:text="@string/copyright"
+            android:textColor="#ffffff"
+            android:textSize="10sp"
+            android:gravity="center"
+            />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="35" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
