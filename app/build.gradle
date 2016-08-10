@@ -30,4 +30,5 @@ dependencies {
     compile 'com.balysv.materialmenu:material-menu:1.5.4'
     compile 'com.github.bumptech.glide:glide:3.6.0'
     compile 'com.makeramen:roundedimageview:2.2.1'
+    compile 'io.kvh:amr:1.1.1'
 }

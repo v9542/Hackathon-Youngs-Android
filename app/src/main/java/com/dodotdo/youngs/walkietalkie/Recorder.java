@@ -53,6 +53,12 @@ public class Recorder {
 
     }
 
+    public void playing(short[] data, int length) {
+
+        audioTrack.write(data, 0, length / 2);
+
+    }
+
     public void stopPlaying() {
 
         audioTrack.stop();
