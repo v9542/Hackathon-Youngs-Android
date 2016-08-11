@@ -4,47 +4,33 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.dodotdo.youngs.data.Voice;
 import com.dodotdo.youngs.server.NetDefine;
-import com.dodotdo.youngs.server.ServerQuery;
-import com.dodotdo.youngs.server.response.QuestionResponse;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.net.UnknownHostException;
 import java.util.Arrays;
-
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
 
 /**
  * Created by KimYebon on 16. 7. 25..
  */
-public class WalkieTalkieSocket extends Thread {
-    private Socket mSocket;
-
-    private BufferedReader reader;
-    private BufferedWriter bufferedWriter;
-    private BufferedOutputStream voiceWriter;
-    private BufferedInputStream voiceReader;
-    private PrintWriter writer;
+public class UDPSocket extends Thread {
+    private DatagramSocket mSocket;
+    private DatagramPacket receivedPacket;
 
     private String mAddr;
     private int mPort;
@@ -59,15 +45,13 @@ public class WalkieTalkieSocket extends Thread {
     public static final int RECEIVE_VOICE = 7;
 
     protected boolean isSaying;
-    GetJsonRequest jsonRequest;
     String token;
 
-    public WalkieTalkieSocket(Context context, Handler mHandler, int channelId, String token) {
+    public UDPSocket(Handler mHandler, int channelId, String token) {
         mAddr = NetDefine.PATH;
         mPort = NetDefine.SOCKET_PORT;
         this.mHandler = mHandler;
         this.channelId = channelId;
-        jsonRequest = new GetJsonRequest(context);
         this.token = token;
     }
 
@@ -92,17 +76,9 @@ public class WalkieTalkieSocket extends Thread {
             if (mConnected)
                 return true;
 
-            SocketAddress socketAddress = new InetSocketAddress(addr, port);
-            mSocket = new Socket();
 
-            mSocket.connect(socketAddress, timeout);
-            mSocket.setTcpNoDelay(false);
+            mSocket = new DatagramSocket();
 
-            reader = new BufferedReader(new InputStreamReader(mSocket.getInputStream()));
-            bufferedWriter = new BufferedWriter(new OutputStreamWriter(mSocket.getOutputStream()));
-            voiceWriter = new BufferedOutputStream(mSocket.getOutputStream());
-            voiceReader = new BufferedInputStream(mSocket.getInputStream());
-            writer = new PrintWriter(bufferedWriter, true);
             mConnected = true;
         } catch (IOException e) {
             System.out.println(e);
@@ -110,11 +86,6 @@ public class WalkieTalkieSocket extends Thread {
             return false;
         }
         return true;
-    }
-
-    protected void sendAuth() {
-
-        send(token);
     }
 
     @Override
@@ -130,13 +101,17 @@ public class WalkieTalkieSocket extends Thread {
         //sendAuth();
 
         receivedVoice = new byte[32];
+        receivedPacket = new DatagramPacket(receivedVoice, receivedVoice.length);
         while (!Thread.interrupted()) {
             try {
-                int length = voiceReader.read(receivedVoice, 0, 32);
-                Log.d("Yebon", length+"received"+Arrays.toString(receivedVoice));
+                mSocket.receive(receivedPacket);
+                receivedVoice = receivedPacket.getData();
+                Log.d("Yebon", receivedVoice.length + "received" + Arrays.toString(receivedVoice));
                 mHandler.sendMessage(makeMessage(RECEIVE_VOICE, receivedVoice));
-            } catch (IOException e1) {
+            } catch (NullPointerException e1) {
 
+            } catch(IOException e2) {
+                e2.printStackTrace();
             }
         }
     }
@@ -146,16 +121,8 @@ public class WalkieTalkieSocket extends Thread {
         if (!mConnected)
             return false;
 
-        try {
-            reader.close();
-            writer.close();
-            mConnected = false;
-            mHandler.sendMessage(makeMessage(STATE_DISCONNECTED, ""));
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return false;
-        }
+        mConnected = false;
+        mHandler.sendMessage(makeMessage(STATE_DISCONNECTED, ""));
 
         return true;
     }
@@ -164,24 +131,23 @@ public class WalkieTalkieSocket extends Thread {
         return mConnected;
     }
 
-    public void send(Object data) {
-        if (!mConnected) {
-            Log.d("Yebon", "socket is not connected");
-            return;
-        }
-        writer.println(data);
-        writer.flush();
-    }
 
     public void sendVoice(byte[] data) {
         if (!mConnected) {
             Log.d("Yebon", "socket is not connected");
             return;
         }
+        DatagramPacket packet;
+        InetAddress serverAddr= null;
         try {
-            voiceWriter.write(data, 0, data.length);
-            voiceWriter.flush();
-            Log.d("Yebon", data.length+"send"+Arrays.toString(data));
+            serverAddr = InetAddress.getByName(mAddr);
+        }catch(UnknownHostException e) {
+            e.printStackTrace();
+        }
+        try {
+            packet = new DatagramPacket(data, data.length, serverAddr, mPort);
+            mSocket.send(packet);
+            Log.d("Yebon", data.length + "send" + Arrays.toString(data));
         } catch (IOException e) {
             e.printStackTrace();
         }
