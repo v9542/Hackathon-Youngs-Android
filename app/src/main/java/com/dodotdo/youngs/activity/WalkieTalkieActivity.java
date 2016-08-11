@@ -50,6 +50,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.List;
 
+import io.kvh.media.amr.AmrDecoder;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -363,9 +364,10 @@ public class WalkieTalkieActivity extends AppCompatActivity {
     };
 
     protected void receiveVoice(Message inputMessage) {
-        Voice voice = (Voice)inputMessage.obj;
-        receivedVoice = (byte[]) voice.getData();
-        recorder.playing(receivedVoice, voice.getLength());
+        receivedVoice = (byte[])inputMessage.obj;
+        short[] shortVoice = new short[160];
+        //AmrDecoder.decode(decodingState, receivedVoice, shortVoice);
+        recorder.playing(shortVoice, shortVoice.length);
     }
 
     private void requestOutClass() {
@@ -429,13 +431,13 @@ public class WalkieTalkieActivity extends AppCompatActivity {
             buffer = new short[Recorder.bufferSize];
 
             while (isRecording) {
-                try {
-                    socket.setIsSaying(true);
-                    mData = recorder.record(buffer);
-                    socket.sendVoice(mData);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    socket.setIsSaying(true);
+//                    mData = recorder.record(buffer);
+//                    socket.sendVoice(mData);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
             }
             socket.setIsSaying(false);
 

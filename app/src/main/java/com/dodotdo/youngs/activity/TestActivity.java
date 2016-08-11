@@ -13,6 +13,7 @@ import android.widget.Button;
 import com.dodotdo.youngs.R;
 import com.dodotdo.youngs.data.Voice;
 import com.dodotdo.youngs.walkietalkie.Recorder;
+import com.dodotdo.youngs.walkietalkie.UDPSocket;
 import com.dodotdo.youngs.walkietalkie.WalkieTalkieSocket;
 
 import java.io.IOException;
@@ -26,7 +27,7 @@ import io.kvh.media.amr.AmrEncoder;
  */
 public class TestActivity extends AppCompatActivity {
     byte[] mData, receivedVoice;
-    short[] buffer;
+    short[] in;
     Recorder recorder;
     int encodingMode;
     long decodingState;
@@ -35,6 +36,7 @@ public class TestActivity extends AppCompatActivity {
 
     WalkieTalkieSocket socket;
     Button record;
+
 
 
     @Override
@@ -54,8 +56,11 @@ public class TestActivity extends AppCompatActivity {
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new RecordingTasker().execute("");
-                isRecording=true;
+                if(!isRecording) {
+                    new RecordingTasker().execute("");
+                }
+
+                isRecording=!isRecording;
             }
         });
     }
@@ -85,9 +90,10 @@ public class TestActivity extends AppCompatActivity {
     };
 
     protected void receiveVoice(Message inputMessage) {
-        Voice voice = (Voice)inputMessage.obj;
-        receivedVoice = voice.getData();
-        recorder.playing(receivedVoice, voice.getLength());
+        receivedVoice = (byte[])inputMessage.obj;
+        short[] shortVoice = new short[160];
+        AmrDecoder.decode(decodingState, receivedVoice, shortVoice);
+        recorder.playing(shortVoice, shortVoice.length);
     }
 
     public class RecordingTasker extends AsyncTask<String, Void, String> {
@@ -97,18 +103,19 @@ public class TestActivity extends AppCompatActivity {
             Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
 
             recorder.startRecording();
-            buffer = new short[Recorder.bufferSize];
-            mData = new byte[Recorder.bufferSize/5];
+            in = new short[recorder.bufferSize/2];
+            mData = new byte[32];
 
             while (isRecording) {
                 try {
-                    mData = recorder.record(buffer);
-//                    socket.sendVoice(mData);
-                    Log.d("Yebon", "before encoding : " + Arrays.toString(buffer));
-                    AmrEncoder.encode(encodingMode, buffer, mData);
-                    AmrDecoder.decode(decodingState, mData, buffer);
-                    Log.d("Yebon", "after decoding : " + Arrays.toString(buffer));
-                    recorder.playing(buffer, buffer.length);
+                    in=recorder.record(in);
+                    AmrEncoder.encode(encodingMode, in, mData);
+                    socket.sendVoice(mData);
+
+
+                    //AmrDecoder.decode(decodingState, mData, buffer);
+                    //Log.d("Yebon", "after decoding : " + Arrays.toString(buffer));
+                    //recorder.playing(buffer, buffer.length);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

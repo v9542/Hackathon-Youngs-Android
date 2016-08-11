@@ -17,13 +17,19 @@ public class Recorder {
     AudioRecord audioRecord;
     AudioTrack audioTrack;
 
-    public static int bufferSize = 4096;
+    public static int bufferSize;
+    public static int readSize;
 
     public Recorder() {
+        bufferSize = AudioRecord.getMinBufferSize(8000, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT);
+        readSize = 160;
+
+        Log.d("Yebon", bufferSize+"fasfa");
 
         audioRecord = new AudioRecord(MediaRecorder.AudioSource.MIC, 8000,
                 AudioFormat.CHANNEL_IN_MONO,
                 AudioFormat.ENCODING_PCM_16BIT, bufferSize);
+
 
         audioTrack = new AudioTrack(AudioManager.STREAM_MUSIC, 8000, AudioFormat.CHANNEL_OUT_MONO,
                 AudioFormat.ENCODING_PCM_16BIT, bufferSize, AudioTrack.MODE_STREAM);
@@ -41,10 +47,10 @@ public class Recorder {
     }
 
 
-    public byte[] record(short[] buffer) throws IOException {
-        audioRecord.read(buffer, 0, bufferSize);
+    public short[] record(short[] buffer) throws IOException {
+        audioRecord.read(buffer, 0, readSize);
 
-        return shortToBytes(buffer);
+        return buffer;
     }
 
     public void playing(byte[] data, int length) {
